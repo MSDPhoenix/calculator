@@ -5,7 +5,8 @@ let last_pressed;
 let equation = ""
 let operators = '+ - x ÷'
 
-function press(digit) {
+function press(element,digit) {
+    flash_yellow(element);
     console.log('finished',finished);
     if (digit == 0 && displayDiv.innerText == "0"){
         console.log("don't start with '0");
@@ -16,14 +17,17 @@ function press(digit) {
             equation = String(digit);
             finished = false;
     } else {
-        displayDiv.innerText += digit;
-        equation += digit;
+        if (equation.length < 12) {
+            displayDiv.innerText += digit;
+            equation += digit;
+        }
     }
     console.log('equation',equation);
     last_pressed = digit;
 }
 
-function setOP(operator) {
+function setOP(element,operator) {
+    flash_yellow(element);
     finished = false;
     console.log('last_pressed',last_pressed);
     if (operators.includes(last_pressed) == false && last_pressed != undefined){
@@ -49,16 +53,32 @@ function setOP(operator) {
     last_pressed = operator;
 }
 
-function clr(){
+function clr(element){
+    flash_yellow(element);
     displayDiv.innerText = 0;
     equation = '';
     last_pressed = undefined;
 }
 
-function calculate() {  
-    answer = eval(equation);
-    displayDiv.innerText = answer;
+function calculate(element) { 
+    flash_yellow(element);
+    answer = String(eval(equation));
+    if (answer<1000000000000){
+        displayDiv.innerText = answer.substr(0,13);
+    } else {
+        displayDiv.innerText = "Sorry, you broke my brain."    }
     finished = true;
-    equation = String(answer);
+    equation = answer;
     console.log(equation);
+}
+function scale(element,value){
+    element.style.transform = "scale("+value+")";
+}
+
+function flash_yellow(element) {
+    element.classList.add("flash_yellow");
+    setTimeout(remove_yellow,600,element);
+}
+function remove_yellow(element) {
+    element.classList.remove("flash_yellow");
 }

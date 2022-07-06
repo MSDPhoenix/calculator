@@ -34,6 +34,7 @@ button {
     height: 4vw;
     width:4vw;
     margin:.7vw;
+    transition:500ms;
 }
 .operator {
     background-color: #FF8C00;
@@ -43,4 +44,7 @@ button {
     width:90%;
     border-radius: 2vw;
 
+}
+.flash_yellow {
+    background-color: goldenrod;
 }
