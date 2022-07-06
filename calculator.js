@@ -28,30 +28,24 @@ function press(element,digit) {
 }
 
 function setOP(element,operator) {
-    flash_yellow(element);
-    finished = false;
-    console.log('last_pressed',last_pressed);
-    if (operators.includes(last_pressed) == false && last_pressed != undefined){
-        console.log('hello');
-        displayDiv.innerText += operator;
-        if (operator == '+' || operator == '-') {
-            equation += operator;
-        } else if (operator == 'x') {
-            equation += '*';
-        } else {
-            equation += '/';
+    if (equation.length < 11) {
+        flash_yellow(element);
+        finished = false;
+        console.log('last_pressed',last_pressed);
+        if (operators.includes(last_pressed) == false && last_pressed != undefined){
+            console.log('hello');
+            displayDiv.innerText += operator;
+            if (operator == '+' || operator == '-') {
+                equation += operator;
+            } else if (operator == 'x') {
+                equation += '*';
+            } else {
+                equation += '/';
+            }
+            console.log('equation',equation);
         }
-        console.log('equation',equation);
-    // } else if (equation.slice(equation.length-1,equation.length) != "-" && operator=="-"){
-    //     if (last_pressed == undefined){
-    //         displayDiv.innerText = operator;
-    //         equation = operator;
-    //     } else {
-    //         displayDiv.innerText += operator;
-    //         equation = +operator;
-    //     }
+        last_pressed = operator;
     }
-    last_pressed = operator;
 }
 
 function clr(element){
