@@ -62,11 +62,7 @@ function calculate(element) {
         if (operators2.includes(end_of_equation) == false) {        // doesn't run if equation ends with operator
             flash_yellow(element);
             answer = String(eval(equation));
-            if (answer<1000000000000){
-                displayDiv.innerText = answer.substr(0,13);
-            } else {
-                displayDiv.innerText = "Sorry, you broke my brain."    
-            }
+            displayDiv.innerText = answer.substr(0,13);
             finished = true;                                        // if an operator is pressed immediately after '=', then the equation keeps the value given here 
             equation = answer;                                      // if a number is pressed immediately after 0, then equation is over-written by the first number pressed
         }
