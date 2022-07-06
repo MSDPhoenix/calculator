@@ -4,6 +4,7 @@ let result;
 let last_pressed;
 let equation = ""
 let operators = '+ - x ÷'
+let operators2 = '+ - * /'
 
 function press(element,digit) {
     flash_yellow(element);
@@ -60,17 +61,22 @@ function clr(element){
     last_pressed = undefined;
 }
 
-function calculate(element) { 
-    flash_yellow(element);
-    answer = String(eval(equation));
-    if (answer<1000000000000){
-        displayDiv.innerText = answer.substr(0,13);
-    } else {
-        displayDiv.innerText = "Sorry, you broke my brain."    }
-    finished = true;
-    equation = answer;
-    console.log(equation);
+function calculate(element) {
+    let end_of_equation = equation.slice(equation.length-1,equation.length)  
+        if (operators2.includes(end_of_equation) == false) {
+            console.log("hello");
+            flash_yellow(element);
+            answer = String(eval(equation));
+            if (answer<1000000000000){
+                displayDiv.innerText = answer.substr(0,13);
+            } else {
+                displayDiv.innerText = "Sorry, you broke my brain."    }
+            finished = true;
+            equation = answer;
+            console.log(equation);
+        }
 }
+
 function scale(element,value){
     element.style.transform = "scale("+value+")";
 }
@@ -82,3 +88,6 @@ function flash_yellow(element) {
 function remove_yellow(element) {
     element.classList.remove("flash_yellow");
 }
+
+
+
