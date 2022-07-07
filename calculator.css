@@ -6,12 +6,10 @@
     vertical-align: top;
     font-size:3vw;
     color:#FFFFFF;
-    /* outline:pink 1px dotted; */
 }
 body {
     display:grid;
     place-items:center;
-
 }
 #calculator {
     display: inline-block;
