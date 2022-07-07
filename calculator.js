@@ -54,8 +54,7 @@ function setOP(element,operator) {
         }
         displayDiv.innerText += operator;
         last_pressed = operator;
-
-    } // if (last_pressed != undefined)
+    } 
 }
 
 function clr(element){                                              // reset all values
